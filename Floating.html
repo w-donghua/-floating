@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>取消浮动带来的影响</title>
+</head>
+<body>
+<!--1.将需要float的元素嵌套进一个div父元素。只要保证该父元素和里面的子元素高度一致就行，这样就不会影响其他元素。相当于是在
+div父元素里浮动排列-->
+<div>
+    <style type="text/css">
+        .div1 {
+            background: #000080;
+            border: 1px solid red;
+            height: 150px;
+        }
+
+        .div2 {
+            background: olivedrab;
+            border: 1px solid red;
+            margin-top: 10px;
+        }
+
+        .leftOne {
+            float: left;
+            border: 1px solid black;
+            width: 20%;
+            height: 200px;
+        }
+
+        .rightTwo {
+            float: left;
+            width: 30%;
+            height: 200px;
+            background: #DDD;
+        }
+    </style>
+    <div class="div1">
+        <div class="leftOne"><h1 style="padding:40px;color: white;">Left</h1></div>
+        <div class="rightTwo"><h2>Right</h2></div>
+    </div>
+    <div class="div2">
+        div2
+    </div>
+</div>
+<hr color="green"/>
+<hr color="yellow"/>
+<hr color="red"/>
+<hr color="pink"/>
+<br /><br /><br /><br />
+
+<!--2.在下个元素添加clear:both;消除浮动-->
+<div>
+    <style type="text/css">
+        .div3 {
+            background: #000080;
+            border: 1px solid red;
+            height: 100px;
+        }
+
+        .div4 {
+            background: #800080;
+            border: 1px solid red;
+            height: 100px;
+            margin-top: 10px;
+        }
+
+        .leftOnes {
+            float: left;
+            border: 1px solid red;
+            width: 20%;
+            height: 200px;
+            background: #DDD;
+        }
+
+        .leftTwos {
+            float: left;
+            width: 30%;
+            height: 100px;
+            background: #DDD;
+        }
+    </style>
+    <div class="div3">
+        <div class="leftOnes">Left</div>
+        <div class="leftTwos">Right</div>
+        <div class="clearfloat"></div>
+    </div>
+    <div class="div4" style="clear: both;">
+        div2
+    </div>
+</div>
+
+<hr color="red"/>
+<hr color="pink"/>
+<br /><br /><br /><br />
+<!--3.父级div定义 伪类:after 和 zoom-->
+<div>
+    <style type="text/css">
+        .div1{background:#000080;border:1px solid red;}
+        .div2{background:#800080;border:1px solid red;height:100px;margin-top:10px}
+        .left{float:left;width:20%;height:200px;background:#DDD}
+        .right{float:right;width:30%;height:80px;background:#DDD}
+        /*清除浮动代码*/
+        .clearfloat:after{display:block;clear:both;content:"";visibility:hidden;height:0}
+        .clearfloat{zoom:1}
+    </style>
+    <div class="div1 clearfloat">
+        <div class="left">Left</div>
+        <div class="right">Right</div>
+    </div>
+    <div class="div2">
+        div2
+    </div>
+</div>
+</body>
+</html>
